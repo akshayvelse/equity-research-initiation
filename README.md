@@ -5,9 +5,12 @@ An institutional valuation model and equity research initiation framework coveri
 ## Directory Architecture
 
 ```
-01_equity_research_initiation/
+equity-research-initiation/
 ├── README.md
 ├── investment_memo.md
+├── requirements.txt
+├── pyproject.toml
+├── Makefile
 ├── data/
 │   ├── msft_historical_financials.csv
 │   └── peer_multiples.csv
@@ -17,9 +20,11 @@ An institutional valuation model and equity research initiation framework coveri
 │   ├── dcf_engine.py
 │   ├── comps_engine.py
 │   └── excel_generator.py
-└── output/
-    ├── dcf_comps_valuation_model.xlsx
-    └── sensitivity_surface.png
+├── output/
+│   ├── dcf_comps_valuation_model.xlsx
+│   └── sensitivity_surface.png
+└── tests/
+    └── test_dcf_comps.py
 ```
 
 ## Methodology & Structural Modeling
@@ -56,14 +61,17 @@ An institutional valuation model and equity research initiation framework coveri
 
 ```bash
 # Fetch and cache fundamental datasets
-python 01_equity_research_initiation/src/data_loader.py
+python src/data_loader.py
 
 # Run DCF valuation and generate 2D sensitivity heatmap
-python 01_equity_research_initiation/src/dcf_engine.py
+python src/dcf_engine.py
 
 # Compute peer multiple distributions and implied valuations
-python 01_equity_research_initiation/src/comps_engine.py
+python src/comps_engine.py
 
 # Generate live multi-tab Excel workbook
-python 01_equity_research_initiation/src/excel_generator.py
+python src/excel_generator.py
+
+# Execute test suite
+pytest -v
 ```
